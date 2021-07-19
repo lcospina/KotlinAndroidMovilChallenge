@@ -19,7 +19,7 @@ class MainFragmentModelView : ViewModel() {
     init {
         citys = MutableLiveData();
 
-        //SE DEBE INYECTAR UNA DEPENDENCIA
+        //SE PUEDE INYECTAR UNA DEPENDENCIA
         searchCityByNameUseCase =
             SearchCityByNameUseCase(CityRepositoryImp(CityDataSourceRetroFitImpl()))
     }

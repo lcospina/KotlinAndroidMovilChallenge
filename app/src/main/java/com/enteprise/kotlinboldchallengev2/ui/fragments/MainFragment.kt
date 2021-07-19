@@ -1,6 +1,9 @@
 package com.enteprise.kotlinboldchallengev2.ui.fragments
 
 import android.os.Bundle
+import android.os.Handler
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,11 +38,39 @@ class MainFragment : Fragment() {
             .observe(viewLifecycleOwner, androidx.lifecycle.Observer<List<City>> { citys ->
                 adapter.setResults(citys)
             })
-        view.city.doOnTextChanged { text, _, _, _ ->
-            modelView.onTypedText(text.toString())
-        }
 
-        //SE DEBE INYECTAR UNA DEPENDENCIA
+
+        /*
+        view.city.doOnTextChanged { text, _, _, _ ->
+            //modelView.onTypedText(text.toString())
+        }
+        */
+
+        view.city.addTextChangedListener(object : TextWatcher {
+            private val mHandler = Handler()
+            var data: Editable? = null
+            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
+            override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
+            override fun afterTextChanged(editable: Editable) {
+                afterTextChangedDoPost(editable)
+            }
+
+            fun afterTextChangedDoPost(editable: Editable?) {
+                mHandler.removeCallbacks(mFilterTask)
+                mHandler.postDelayed(mFilterTask, 100)
+                data = editable
+            }
+
+            var mFilterTask = Runnable {
+                if (data != null) {
+                    println("--->" + data.toString())
+                    modelView.onTypedText(data.toString())
+                }
+            }
+        })
+
+
+        //SE PUEDE INYECTAR UNA DEPENDENCIA
         adapter = CitysResultsAdapter(
             CityRepositoryImp(
                 CityDataSourceRetroFitImpl()
