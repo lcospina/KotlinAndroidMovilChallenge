@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">KotlinBoldChallengeV2</string>
+    <string name="labelCity">Ciudad a consultar el clima</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="label_button_more_info">Presione para mas información</string>
+    <string name="label_type">Tipo: </string>
+    <string name="label_city">Ciudad: </string>
+    <string name="label_date">Fecha: </string>
+    <string name="label_state">Estado: </string>
+    <string name="label_temp">Temperatura min: </string>
+    <string name="label_temp_max">Temperatura max: </string>
+    <string name="label_wint">Vel vieto: </string>
+    <string name="label_description">Bienvenido a la aplicación móvil que permite buscar información del clima de las ciudades del mundo, por favor escriba el nombre de una ciudad en el campo inferior.</string>
+    <string name="title_activity_splash">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+</resources>
