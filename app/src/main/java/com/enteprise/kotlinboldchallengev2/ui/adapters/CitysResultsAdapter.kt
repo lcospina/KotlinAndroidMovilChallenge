@@ -5,6 +5,8 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
@@ -76,137 +78,51 @@ class CitysResultsAdapter(var cityRepositoryImp: CityRepositoryImp) :
                     holder.viewBinding.timesLayout.setVisibility(View.GONE)
                     holder.viewBinding.progressBar.setVisibility(View.GONE)
                 } else {
-                    Glide.with(holder.viewBinding.weatherImgDay1)
-                        .load(
-                            "https://www.metaweather.com/static/img/weather/png/" + city.citySpecificData!!
-                                .consolidated_weather.get(0).weather_state_abbr
-                                .toString() + ".png"
-                        )
-                        .into(holder.viewBinding.weatherImgDay1)
-                    holder.viewBinding.weatherDate1.setText(
-                        city.citySpecificData!!.consolidated_weather.get(0)
-                            .applicable_date
+
+                    this.loadDataWeatherItem(
+                        city,
+                        holder.viewBinding.weatherImgDay1,
+                        holder.viewBinding.weatherDate1,
+                        holder.viewBinding.weatherState1,
+                        holder.viewBinding.weatherTemp1,
+                        holder.viewBinding.weatherTempMax1,
+                        holder.viewBinding.weatherWint1,
+                        0
                     )
-                    holder.viewBinding.weatherState1.setText(
-                        city.citySpecificData!!.consolidated_weather.get(0)
-                            .weather_state_name
+
+                    this.loadDataWeatherItem(
+                        city,
+                        holder.viewBinding.weatherImgDay2,
+                        holder.viewBinding.weatherDate2,
+                        holder.viewBinding.weatherState2,
+                        holder.viewBinding.weatherTemp2,
+                        holder.viewBinding.weatherTempMax2,
+                        holder.viewBinding.weatherWint2,
+                        1
                     )
-                    holder.viewBinding.weatherTemp1.setText(
-                        stringCut(
-                            city.citySpecificData!!.consolidated_weather.get(0)
-                                .min_temp
-                        ).toString() + "°C"
+
+
+                    this.loadDataWeatherItem(
+                        city,
+                        holder.viewBinding.weatherImgDay3,
+                        holder.viewBinding.weatherDate3,
+                        holder.viewBinding.weatherState3,
+                        holder.viewBinding.weatherTemp3,
+                        holder.viewBinding.weatherTempMax3,
+                        holder.viewBinding.weatherWint3,
+                        2
                     )
-                    holder.viewBinding.weatherTempMax1.setText(
-                        stringCut(
-                            city.citySpecificData!!.consolidated_weather.get(0)
-                                .max_temp
-                        ).toString() + "°C"
-                    )
-                    holder.viewBinding.weatherWint1.setText(
-                        stringCut(
-                            city.citySpecificData!!.consolidated_weather.get(0)
-                                .wind_speed
-                        ).toString() + "mph"
-                    )
-                    Glide.with(holder.viewBinding.weatherImgDay2)
-                        .load(
-                            "https://www.metaweather.com/static/img/weather/png/" + city.citySpecificData!!
-                                .consolidated_weather.get(1).weather_state_abbr
-                                .toString() + ".png"
-                        )
-                        .into(holder.viewBinding.weatherImgDay2)
-                    holder.viewBinding.weatherDate2.setText(
-                        city.citySpecificData!!.consolidated_weather.get(1)
-                            .applicable_date
-                    )
-                    holder.viewBinding.weatherState2.setText(
-                        city.citySpecificData!!.consolidated_weather.get(1)
-                            .weather_state_name
-                    )
-                    holder.viewBinding.weatherTemp2.setText(
-                        stringCut(
-                            city.citySpecificData!!.consolidated_weather.get(1)
-                                .min_temp
-                        ).toString() + "°C"
-                    )
-                    holder.viewBinding.weatherTempMax2.setText(
-                        stringCut(
-                            city.citySpecificData!!.consolidated_weather.get(1)
-                                .max_temp
-                        ).toString() + "°C"
-                    )
-                    holder.viewBinding.weatherWint2.setText(
-                        stringCut(
-                            city.citySpecificData!!.consolidated_weather.get(1)
-                                .wind_speed
-                        ).toString() + "mph"
-                    )
-                    Glide.with(holder.viewBinding.weatherImgDay3)
-                        .load(
-                            "https://www.metaweather.com/static/img/weather/png/" + city.citySpecificData!!
-                                .consolidated_weather.get(2).weather_state_abbr
-                                .toString() + ".png"
-                        )
-                        .into(holder.viewBinding.weatherImgDay3)
-                    holder.viewBinding.weatherDate3.setText(
-                        city.citySpecificData!!.consolidated_weather.get(2)
-                            .applicable_date
-                    )
-                    holder.viewBinding.weatherState3.setText(
-                        city.citySpecificData!!.consolidated_weather.get(2)
-                            .weather_state_name
-                    )
-                    holder.viewBinding.weatherTemp3.setText(
-                        stringCut(
-                            city.citySpecificData!!.consolidated_weather.get(2)
-                                .min_temp
-                        ).toString() + "°C"
-                    )
-                    holder.viewBinding.weatherTempMax3.setText(
-                        stringCut(
-                            city.citySpecificData!!.consolidated_weather.get(2)
-                                .max_temp
-                        ).toString() + "°C"
-                    )
-                    holder.viewBinding.weatherWint3.setText(
-                        stringCut(
-                            city.citySpecificData!!.consolidated_weather.get(2)
-                                .wind_speed
-                        ).toString() + "mph"
-                    )
-                    Glide.with(holder.viewBinding.weatherImgDay4)
-                        .load(
-                            "https://www.metaweather.com/static/img/weather/png/" + city.citySpecificData!!
-                                .consolidated_weather.get(3).weather_state_abbr
-                                .toString() + ".png"
-                        )
-                        .into(holder.viewBinding.weatherImgDay4)
-                    holder.viewBinding.weatherDate4.setText(
-                        city.citySpecificData!!.consolidated_weather.get(3)
-                            .applicable_date
-                    )
-                    holder.viewBinding.weatherState4.setText(
-                        city.citySpecificData!!.consolidated_weather.get(3)
-                            .weather_state_name
-                    )
-                    holder.viewBinding.weatherTemp4.setText(
-                        stringCut(
-                            city.citySpecificData!!.consolidated_weather.get(3)
-                                .min_temp
-                        ).toString() + "°C"
-                    )
-                    holder.viewBinding.weatherTempMax4.setText(
-                        stringCut(
-                            city.citySpecificData!!.consolidated_weather.get(3)
-                                .max_temp
-                        ).toString() + "°C"
-                    )
-                    holder.viewBinding.weatherWint4.setText(
-                        stringCut(
-                            city.citySpecificData!!.consolidated_weather.get(3)
-                                .wind_speed
-                        ).toString() + "mph"
+
+
+                    this.loadDataWeatherItem(
+                        city,
+                        holder.viewBinding.weatherImgDay4,
+                        holder.viewBinding.weatherDate4,
+                        holder.viewBinding.weatherState4,
+                        holder.viewBinding.weatherTemp4,
+                        holder.viewBinding.weatherTempMax4,
+                        holder.viewBinding.weatherWint4,
+                        3
                     )
 
                     holder.viewBinding.timesLayout.setVisibility(View.VISIBLE)
@@ -226,6 +142,52 @@ class CitysResultsAdapter(var cityRepositoryImp: CityRepositoryImp) :
         } else {
             informationCity.postValue(cityShow)
         }
+    }
+
+
+    fun loadDataWeatherItem(
+        city: City,
+        image: ImageView,
+        date: TextView,
+        weatherState: TextView,
+        tempMin: TextView,
+        tempMax: TextView,
+        winter: TextView,
+        position: Int
+    ) {
+        Glide.with(image)
+            .load(
+                "https://www.metaweather.com/static/img/weather/png/" + city.citySpecificData!!
+                    .consolidated_weather.get(position).weather_state_abbr
+                    .toString() + ".png"
+            )
+            .into(image)
+        date.setText(
+            city.citySpecificData!!.consolidated_weather.get(position)
+                .applicable_date
+        )
+        weatherState.setText(
+            city.citySpecificData!!.consolidated_weather.get(position)
+                .weather_state_name
+        )
+        tempMin.setText(
+            stringCut(
+                city.citySpecificData!!.consolidated_weather.get(position)
+                    .min_temp
+            ).toString() + "°C"
+        )
+        tempMax.setText(
+            stringCut(
+                city.citySpecificData!!.consolidated_weather.get(position)
+                    .max_temp
+            ).toString() + "°C"
+        )
+        winter.setText(
+            stringCut(
+                city.citySpecificData!!.consolidated_weather.get(position)
+                    .wind_speed
+            ).toString() + "mph"
+        )
     }
 
     override fun getItemCount(): Int {
