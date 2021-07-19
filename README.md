@@ -9,7 +9,9 @@ Lenguaje de programación KOTLIN
 Gradle 6.5
 
 Implementa
+
 Arquitectura Limpia
+
 Modulos JetPack Android X
 
 Para construir la aplicación se debe descargar el proyecto y dentro de ella ejecutar el comando ./gradlew build
