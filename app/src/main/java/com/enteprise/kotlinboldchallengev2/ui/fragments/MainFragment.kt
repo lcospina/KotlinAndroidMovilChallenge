@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.enteprise.data.repositories.CityRepositoryImp
 import com.enteprise.domain.City
 import com.enteprise.kotlinboldchallengev2.databinding.FragmentMainBinding
+import com.enteprise.kotlinboldchallengev2.frameworks.depedencies.Application
 import com.enteprise.kotlinboldchallengev2.frameworks.retrofit.datasourceimplements.CityDataSourceRetroFitImpl
 import com.enteprise.kotlinboldchallengev2.ui.viewmodels.MainFragmentModelView
 import com.enteprise.movilchallenge.presentation.adapters.CitysResultsAdapter
@@ -33,7 +34,10 @@ class MainFragment : Fragment() {
     }
 
     fun initBehavior() {
-        modelView = MainFragmentModelView();
+
+        //Inyeccion de dependencia manual
+        modelView =
+            MainFragmentModelView((requireActivity().application as Application).cityRepository);
         modelView.getCitys()
             .observe(viewLifecycleOwner, androidx.lifecycle.Observer<List<City>> { citys ->
                 adapter.setResults(citys)
@@ -70,11 +74,9 @@ class MainFragment : Fragment() {
         })
 
 
-        //SE PUEDE INYECTAR UNA DEPENDENCIA
+        //Inyeccion de dependencia manual
         adapter = CitysResultsAdapter(
-            CityRepositoryImp(
-                CityDataSourceRetroFitImpl()
-            )
+            (requireActivity().application as Application).cityRepository
         )
 
         view.listCitys.setLayoutManager(LinearLayoutManager(context))
